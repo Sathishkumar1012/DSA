@@ -22,9 +22,9 @@ public:
                 h--;
             }
             else {
-            int a=l;
-            int b=h;
-            return check(s,a+1,b)||check(s,a,b-1);
+            //int a=l;
+            //int b=h;
+            return check(s,l+1,h)||check(s,l,h-1);
             }
         }
         return true;
