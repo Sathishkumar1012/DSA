@@ -24,11 +24,7 @@ public:
             else {
             int a=l;
             int b=h;
-            if(check(s,a+1,b))
-                return true;
-            else if(check(s,a,b-1))
-                return true;
-            return false;
+            return check(s,a+1,b)||check(s,a,b-1);
             }
         }
         return true;
