@@ -19,13 +19,14 @@ public:
                 n--;
             }
             swap(nums[maxm],nums[n]);
-            int l=maxm+1;
+           /* int l=maxm+1;
             int h=m-1;
             while(l<h) {
                 swap(nums[l],nums[h]);
                 l++;
                 h--;
-            }
+            }*/
+            reverse(nums.begin()+maxm+1,nums.end());
         }
     }
 };
