@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums) {
-        if(nums.size()==1)
+        /*if(nums.size()==1)
             return 0;
         if(nums.size()==2) {
             if(nums[1]<=nums[0])
@@ -22,6 +22,12 @@ public:
             nums[i]=nums[i-1]+1;
             i++;
         }
-        return count;
+        return count;*/
+        int res = 0, last = 0;
+        for (auto n : nums) {
+            res += max(0, last - n + 1);
+            last = max(n, last + 1);
+        }
+        return res;
     }
 };
