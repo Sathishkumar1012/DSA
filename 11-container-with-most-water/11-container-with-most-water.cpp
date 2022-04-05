@@ -6,13 +6,19 @@ public:
         int j=height.size()-1;
         int temp;
         while(i<j) {
+            int minh=min(height[i],height[j]);
+            maxm=max(maxm,(j-i)*minh);
             if(height[i]>height[j]) {
-                maxm=max(maxm,(j-i)*height[j]);
                 j--;
+                while(i<j && height[j]<minh) {
+                    j--;
+                }
             }
             else {
-                maxm=max(maxm,(j-i)*height[i]);
                 i++;
+                while(i<j && height[i]<minh) {
+                    i++;
+                }
             }
         }
         return maxm;
