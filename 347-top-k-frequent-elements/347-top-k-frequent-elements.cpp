@@ -13,22 +13,19 @@ public:
             mp[p]++;
         }
         
-        priority_queue<pair<int,int>,vector<pair<int,int>>,comp>pq;
-        
-       /* if(mp.size()==1) {
-            res.push_back(nums[0]);
-            return res;
-        }*/
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         
         for(auto it=mp.begin();it!=mp.end();it++) {
-            //cout<<it->first<<"->"<<it->second<<endl;
-            pq.push({it->first,it->second});
+            pq.push({it->second,it->first});
+            if(pq.size()>k) {
+                pq.pop();
+            }
+            
         }
         
         
         while(k--) {
-            res.push_back(pq.top().first);
-            //cout<<pq.top().first<<endl;
+            res.push_back(pq.top().second);
             pq.pop();
         }
         
