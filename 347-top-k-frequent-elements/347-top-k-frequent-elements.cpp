@@ -13,7 +13,7 @@ public:
             mp[p]++;
         }
         
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        /*priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         
         for(auto it=mp.begin();it!=mp.end();it++) {
             pq.push({it->second,it->first});
@@ -27,6 +27,20 @@ public:
         while(k--) {
             res.push_back(pq.top().second);
             pq.pop();
+        }*/
+        
+        vector<vector<int>>temp(nums.size()+1);
+        
+        for(auto p:mp) {
+            temp[p.second].push_back(p.first);
+        }
+        
+        for(int i=temp.size()-1;i>=0 && res.size()<k;i--) {
+            for(auto p:temp[i]) {
+                res.push_back(p);
+                if(res.size()==k)
+                    break;
+            }
         }
         
         return res;
