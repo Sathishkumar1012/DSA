@@ -3,7 +3,7 @@ public:
     bool isAnagram(string s, string t) {
         if(s.length()!=t.length())
             return false;
-        map<char,int>count;
+        unordered_map<char,int>count;
         for(auto p:s) {
             count[p]++;
         }
