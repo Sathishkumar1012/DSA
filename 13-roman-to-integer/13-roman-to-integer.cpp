@@ -1,30 +1,32 @@
 class Solution {
 public:
-    int romanToInt(string s) {
-        unordered_map<char,int>m;
-        m['I']=1;
-        m['V']=5;
-        m['X']=10;
-        m['L']=50;
-        m['C']=100;
-        m['D']=500;
-        m['M']=1000;
-        
-        int flag;
-        int prev=0;
-        int n=s.length();
-        int i=0;
-        int res=0;
-        
-        while(i<n) {
-            if(i<n-1 && m[s[i]]<m[s[i+1]]) {
-                res-=m[s[i]];
-            }
-            else
-            res+=m[s[i]];
-            i++;
-            //cout<<res<<endl;
-        }
-        return res;
+    int romanToInt(string s) {int res = 0;
+	for (int i = s.length() - 1; i >= 0; i--) {
+		char c = s[i];
+		switch (c) {
+		case 'I':
+			res += (res >= 5 ? -1 : 1);
+			break;
+		case 'V':
+			res += 5;
+			break;
+		case 'X':
+			res += 10 * (res >= 50 ? -1 : 1);
+			break;
+		case 'L':
+			res += 50;
+			break;
+		case 'C':
+			res += 100 * (res >= 500 ? -1 : 1);
+			break;
+		case 'D':
+			res += 500;
+			break;
+		case 'M':
+			res += 1000;
+			break;
+		}
+	}
+	return res;
     }
 };
