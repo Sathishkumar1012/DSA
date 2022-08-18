@@ -10,7 +10,7 @@ public:
             m[p]++;
         }
         
-        vector<pair<int,int>>v;
+       /* vector<pair<int,int>>v;
         for(auto k:m) {
             v.push_back(k);
         }
@@ -25,6 +25,24 @@ public:
             res++;
             if(l>=arr.size()/2)
                 break;       
+        }*/
+        
+        vector<int>v;
+        
+        for(auto p:m) {
+            v.push_back(p.second);
+        }
+        
+        sort(v.begin(),v.end());
+        
+        int i=v.size()-1;
+        int j=0;
+        int res=0;
+        
+        while(j<arr.size()/2) {
+            res++;
+            j+=v[i];
+            i--;
         }
         
         return res;
