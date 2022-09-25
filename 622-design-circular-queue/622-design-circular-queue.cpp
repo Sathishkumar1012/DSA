@@ -3,17 +3,19 @@ public:
     vector<int>q;
     int f=0;
     int r=-1;
+    int len=0;
     MyCircularQueue(int k) {
         q.reserve(k);
-        for(int i=0;i<k;i++) {
+        /*for(int i=0;i<k;i++) {
             q.push_back(-1);
-        }
+        }*/
     }
     
     bool enQueue(int value) {
-        if(isEmpty() || !isFull()) {
+        if(!isFull()) {
             q[(r+1)%q.capacity()]=value;
             r=(r+1)%q.capacity();
+            len++;
             return true;
         }
         return false;
@@ -22,37 +24,25 @@ public:
     bool deQueue() {
         if(isEmpty())
             return false;
-        if(f==r)
-            f=0,r=-1;
-        else
         f=(f+1)%q.capacity();
+        len--;
         return true;
     }
     
     int Front() {
-        if(isEmpty())
-            return -1;
-        return q[f];
+        return isEmpty()?-1:q[f];
     }
     
     int Rear() {
-        if(isEmpty())
-            return -1;
-        return q[r];
+        return isEmpty()?-1:q[r];
     }
     
     bool isEmpty() {
-        if(r==-1)
-            return true;
-        return false;
+        return len==0;
     }
     
     bool isFull() {
-        int temp=(r+1)%q.capacity();
-        if(!isEmpty() && temp==f) {
-            return true;
-        }
-        return false;
+        return len==q.capacity();
     }
 };
 
