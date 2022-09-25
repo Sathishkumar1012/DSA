@@ -20,9 +20,11 @@ public:
     }
     
     bool deQueue() {
-        if(isEmpty() || q[f]==-1)
+        if(isEmpty())
             return false;
-        q[f]=-1;
+        if(f==r)
+            f=0,r=-1;
+        else
         f=(f+1)%q.capacity();
         return true;
     }
@@ -40,15 +42,14 @@ public:
     }
     
     bool isEmpty() {
-        if(r==-1 || q[r]==-1)
+        if(r==-1)
             return true;
         return false;
     }
     
     bool isFull() {
         int temp=(r+1)%q.capacity();
-        if(temp==f) {
-            if(q[temp]!=-1)
+        if(!isEmpty() && temp==f) {
             return true;
         }
         return false;
