@@ -6,8 +6,8 @@ public:
             return "";
         int i=0;
         
-        while(i<n) {
-            if(palindrome[i]!='a' && i!=n/2) {
+        while(i<n/2) {
+            if(palindrome[i]!='a') {
                 palindrome[i]='a';
                 return palindrome;
             }
