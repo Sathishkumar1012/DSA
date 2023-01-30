@@ -21,7 +21,7 @@ public:
             ci=ci%mod;
             co=co%mod;
             cu=cu%mod;
-            //res=ca+ci+ce+co+cu;
+          //  res=ca+ci+ce+co+cu;
             pa=ca;
             pe=ce;
             pi=ci;
@@ -31,6 +31,6 @@ public:
             i++;
         }
         //cout<<res<<endl;
-        return (pa+pe+pi+po+pu)%mod;
+        return (ca+ci+ce+co+cu)%mod;
     }
 };
