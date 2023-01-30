@@ -5,7 +5,7 @@ public:
             return 0;
         if(n==1 || n==2)
             return 1;
-        vector<int>dp(n+1,INT_MAX);
+        vector<int>dp(38,INT_MAX);
         dp[0]=0;
         dp[1]=dp[2]=1;
         
