@@ -5,13 +5,18 @@ public:
             return 0;
         if(n==1 || n==2)
             return 1;
-        vector<int>dp(38,INT_MAX);
-        dp[0]=0;
-        dp[1]=dp[2]=1;
-        
-        for(int i=3;i<=n;i++) {
-            dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
+        int i=3;
+        int a,b,c,d;
+        a=0;
+        b=1;
+        c=1;
+        while(i<=n) {
+            d=a+b+c;
+            a=b;
+            b=c;
+            c=d;
+            i++;
         }
-        return dp[n];
+        return d;
     }
 };
