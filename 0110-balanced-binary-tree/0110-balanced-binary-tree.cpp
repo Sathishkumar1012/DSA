@@ -11,21 +11,17 @@
  */
 class Solution {
 public:
-    bool result=true;
-    int maxDepth(TreeNode* root){
+    int check(TreeNode* root) {
         if(!root)
             return 0;
-        int l = maxDepth(root->left);
-        int r = maxDepth(root->right);
-        if(abs(l-r)>1){
-            result = false;
-            return 0; //exit recursion
-        }
-        return 1+max(l,r);
+        int left=check(root->left);
+        int right=check(root->right);
+        if(left==-1 || right==-1 || abs(left-right)>1)
+            return -1;
+        return 1+max(left,right);
     }
     
     bool isBalanced(TreeNode* root) {
-        maxDepth(root);
-        return result;
+        return check(root)!=-1;
     }
 };
