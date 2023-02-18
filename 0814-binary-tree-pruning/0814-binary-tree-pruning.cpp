@@ -11,17 +11,21 @@
  */
 class Solution {
 public:
+    int check(TreeNode* root) {
+        if(!root)
+            return 0;
+        int left=check(root->left);
+        int right=check(root->right);
+        root->left=left==0?NULL:root->left;
+        root->right=right==0?NULL:root->right;
+        return left+right+root->val;
+    }
+    
     TreeNode* pruneTree(TreeNode* root) {
-       if(!root)
-           return root;
-        
-       root->left= pruneTree(root->left);
-       root->right= pruneTree(root->right);
-        
-        if(root->left==NULL && root->right==NULL && root->val==0) {
+        if(root==NULL)
             return NULL;
-        }
-        
+        if(check(root)==0)
+            return NULL;
         return root;
     }
 };
