@@ -11,16 +11,20 @@
  */
 class Solution {
 public:
-    bool check(TreeNode* root,int temp) {
+    bool isUnivalTree(TreeNode* root) {
         if(!root)
             return true;
-        if(root->val!=temp)
-            return false;
-        return check(root->left,temp) && check(root->right,temp);
-    }
-    
-    bool isUnivalTree(TreeNode* root) {
-        int temp=root->val;
-        return check(root,temp);
+        
+        if(root->left) {
+            if(root->left->val!=root->val)
+                return false;
+        }
+        
+        if(root->right) {
+            if(root->right->val!=root->val)
+                return false;
+        }
+        
+        return isUnivalTree(root->left) && isUnivalTree(root->right);
     }
 };
