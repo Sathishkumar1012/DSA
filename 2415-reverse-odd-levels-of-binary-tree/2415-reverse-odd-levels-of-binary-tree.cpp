@@ -11,19 +11,38 @@
  */
 class Solution {
 public:
-    void check(TreeNode* root1,TreeNode* root2,int level) {
-        if(!root1 || !root2)
-            return;
-        if(level%2==1)
-            swap(root1->val,root2->val);
-        check(root1->left,root2->right,level+1);
-        check(root1->right,root2->left,level+1);
-    }
-    
     TreeNode* reverseOddLevels(TreeNode* root) {
         if(!root)
             return root;
-        check(root->left,root->right,1);
+        queue<TreeNode*>q;
+        q.push(root);
+        int level=0;
+        vector<int>values;
+        while(!q.empty()) {
+            int s=q.size()-1;
+            vector<int>temp;
+            while(s>=0) {
+                TreeNode* t=q.front();
+                q.pop();
+                
+                if(level%2==1) {
+                    t->val=values[s];
+                }
+                
+                if(t->left) {
+                    q.push(t->left);
+                    temp.push_back(t->left->val);
+                }
+                
+                if(t->right) {
+                    q.push(t->right);
+                    temp.push_back(t->right->val);
+                }
+                s--;
+            }
+            values=temp;
+            level++;
+        }
         return root;
     }
 };
