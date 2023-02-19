@@ -24,47 +24,36 @@ public:
         
         while(!q.empty()) {
             int s=q.size();
-            //cout<<"**"<<endl;
-            //cout<<s<<endl;
             vector<int>temp;
-            if(level%2==1) {
-                while(s--) {
+            while(s--) {
+                if(level%2==1) {
                     TreeNode* t=q.front();
                     q.pop_front();
-                  //  cout<<t->val<<endl;
                     if(t->right) {
                         q.push_back(t->right);
                         temp.push_back(t->right->val);
-                       // cout<<t->right->val<<endl;
                     }
                     
                     if(t->left) {
                         q.push_back(t->left);
                         temp.push_back(t->left->val);
-                        //cout<<t->left->val<<endl;
                     }
                 }
-            }
-            
-              else {
-                  while(s--) {
+                
+                else {
                     TreeNode* t=q.back();
                     q.pop_back();
-                //    cout<<t->val<<endl;
                     if(t->left) {
                         q.push_front(t->left);
                         temp.push_back(t->left->val);
-                       // cout<<t->left->val<<endl;
                     }
                     
                     if(t->right) {
                         q.push_front(t->right);
                         temp.push_back(t->right->val);
-                      //  cout<<t->right->val<<endl;
                     }
                 }
-              }
-                
+            }
             level++;
             if(temp.size()>0)
             result.push_back(temp);
