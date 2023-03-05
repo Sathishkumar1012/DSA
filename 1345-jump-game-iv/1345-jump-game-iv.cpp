@@ -17,7 +17,7 @@ public:
         while(!q.empty()){
             step++;
             int size = q.size();
-            for(int i = 0; i < size; i++){
+            while(size--){
                 int j = q.front();
                 q.pop();
 
