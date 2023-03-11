@@ -21,35 +21,24 @@
  */
 class Solution {
 public:
-    ListNode* helper(ListNode* t) {
-        ListNode* pre=NULL;
-        ListNode* slow=t;
-        ListNode* fast=t;
-        
-        while(fast && fast->next) {
-            pre=slow;
-            slow=slow->next;
-            fast=fast->next->next;
-        }
-        
-        if(pre)
-        pre->next=NULL;
-        
-        return slow;
-    }
-    
     TreeNode* sortedListToBST(ListNode* head) {
         if(head==NULL)
             return NULL;
-        ListNode* mid=helper(head);
-        
-        TreeNode* temp=new TreeNode(mid->val);
-        
-        if(head==mid)
-            return temp;
-        
-        temp->left=sortedListToBST(head);
-        temp->right=sortedListToBST(mid->next);
-        return temp;
+        return toBST(head,NULL);
+    }
+    
+    TreeNode* toBST(ListNode* head, ListNode* tail){
+    ListNode* slow = head;
+    ListNode* fast = head;
+    if(head==tail) return NULL;
+    
+    while(fast!=tail&&fast->next!=tail){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    TreeNode* thead = new TreeNode(slow->val);
+    thead->left = toBST(head,slow);
+    thead->right = toBST(slow->next,tail);
+    return thead;
     }
 };
