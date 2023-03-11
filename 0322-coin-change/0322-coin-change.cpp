@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    long helper(int i,vector<int>& coins, int amount,int n,vector<vector<int>>&dp) {
+    long helper(int i,vector<int>& coins, int amount,int n,vector<vector<long>>&dp) {
         if(i==n)
             return INT_MAX-1;
         if(amount<0)
@@ -19,9 +19,9 @@ public:
          if(amount<=0)
             return 0;
         int n=coins.size();
-        vector<vector<int>>dp(n,vector<int>(amount+1,INT_MAX));
+        vector<vector<long>>dp(n,vector<long>(amount+1,INT_MAX));
         helper(0,coins,amount,n,dp);
-        int res=INT_MAX;
+        long res=INT_MAX;
         for(int i=0;i<n;i++) {
             res=min(res,dp[i][amount]);
         }
