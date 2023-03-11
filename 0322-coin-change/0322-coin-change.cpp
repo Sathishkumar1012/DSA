@@ -25,6 +25,6 @@ public:
         for(int i=0;i<n;i++) {
             res=min(res,dp[i][amount]);
         }
-        return res>=INT_MAX-1?-1:res;
+        return res>amount?-1:res;
     }
 };
