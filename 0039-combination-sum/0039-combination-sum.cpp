@@ -1,8 +1,7 @@
 class Solution {
 public:
-    vector<int>temp;
     vector<vector<int>>res;
-    
+    vector<int>temp;
     void helper(int i,int target,vector<int>& candidates) {
         if(i==candidates.size())
             return;
@@ -17,11 +16,16 @@ public:
                 helper(j,target-candidates[j],candidates);
                 temp.pop_back();
             }
+            
+            else
+                break;
         }
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         int n=candidates.size();
+        //vector<int>temp;
+        sort(candidates.begin(),candidates.end());
         helper(0,target,candidates);
         return res;
     }
