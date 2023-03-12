@@ -3,8 +3,8 @@ public:
     vector<vector<int>>res;
     vector<int>temp;
     void helper(int i,int target,vector<int>& candidates) {
-        if(i==candidates.size())
-            return;
+       // if(i==candidates.size())
+        //    return;
         if(target==0) {
             res.push_back(temp);
             return;
