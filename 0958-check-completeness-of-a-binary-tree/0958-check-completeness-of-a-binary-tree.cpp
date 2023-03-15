@@ -14,36 +14,18 @@ public:
     bool isCompleteTree(TreeNode* root) {
         queue<TreeNode*>q;
         q.push(root);
-        int flag=0;
+        
+        bool end=false;
         while(!q.empty()) {
-            int n=q.size();
-            int i=0;
-            while(i<n) {
-                TreeNode* t=q.front();
-                q.pop();
-                if(flag) {
-                    if(t->left || t->right)
-                        return false;
-                }
-                
-                if(!t->left && t->right)
+            TreeNode* top=q.front();
+            q.pop();
+            if(!top)
+                end=true;
+            else {
+                if(end)
                     return false;
-                else if(t->left && !t->right) {
-                    flag=1;
-                    q.push(t->left);
-                }
-                
-                else if(!t->left && !t->right)
-                    flag=1;
-                
-                else {
-                    if(t->left)
-                        q.push(t->left);
-                    if(t->right)
-                        q.push(t->right);
-                }
-                
-                i++;
+                q.push(top->left);
+                q.push(top->right);
             }
         }
         return true;
