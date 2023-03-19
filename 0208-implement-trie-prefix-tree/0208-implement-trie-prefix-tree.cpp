@@ -6,8 +6,8 @@ struct node {
         return link[c-'a']!=NULL;
     }
     
-    void put(char c,node* t) {
-        link[c-'a']=t;
+    void put(char c) {
+        link[c-'a']=new node();
     }
     
     node* get(char c) {
@@ -35,7 +35,7 @@ public:
         
         for(auto p:word) {
             if(!n->checkkey(p))
-                n->put(p, new node());
+                n->put(p);
             n=n->get(p);
         }
         n->setend();
