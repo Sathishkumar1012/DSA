@@ -1,60 +1,67 @@
-class TrieNode
-{
-public:
-    TrieNode *next[26];
-    bool is_word;
+struct node {
+    node* link[26];
+    bool flag=false;
     
-    // Initialize your data structure here.
-    TrieNode(bool b = false)
-    {
-        memset(next, 0, sizeof(next));
-        is_word = b;
+    bool checkkey(char c) {
+        return link[c-'a']!=NULL;
+    }
+    
+    void put(char c,node* t) {
+        link[c-'a']=t;
+    }
+    
+    node* get(char c) {
+        return link[c-'a'];
+    }
+    
+    void setend() {
+        flag=true;
+    }
+    
+    bool isend() {
+        return flag;
     }
 };
 
-class Trie
-{
-    TrieNode *root;
+class Trie {
 public:
-    Trie()
-    {
-        root = new TrieNode();
+    node* root;
+    Trie() {
+        root= new node();
     }
-
-    // Inserts a word into the trie.
-    void insert(string s)
-    {
-        TrieNode *p = root;
-        for(int i = 0; i < s.size(); ++ i)
-        {
-            if(p -> next[s[i] - 'a'] == NULL)
-                p -> next[s[i] - 'a'] = new TrieNode();
-            p = p -> next[s[i] - 'a'];
+    
+    void insert(string word) {
+        node* n=root;
+        
+        for(auto p:word) {
+            if(!n->checkkey(p))
+                n->put(p, new node());
+            n=n->get(p);
         }
-        p -> is_word = true;
+        n->setend();
     }
-
-    // Returns if the word is in the trie.
-    bool search(string key)
-    {
-        TrieNode *p = find(key);
-        return p != NULL && p -> is_word;
+    
+    bool search(string word) {
+        node* n=root;
+        
+        for(auto p:word) {
+            if(!n->checkkey(p))
+                return false;
+            n=n->get(p);
+        }
+        return n->isend();
+        
     }
-
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    bool startsWith(string prefix)
-    {
-        return find(prefix) != NULL;
-    }
-
-private:
-    TrieNode* find(string key)
-    {
-        TrieNode *p = root;
-        for(int i = 0; i < key.size() && p != NULL; ++ i)
-            p = p -> next[key[i] - 'a'];
-        return p;
+    
+    bool startsWith(string prefix) {
+        node* n=root;
+        
+        for(auto p:prefix) {
+            if(!n->checkkey(p))
+                return false;
+            n=n->get(p);
+        }
+        return true;
     }
 };
 
