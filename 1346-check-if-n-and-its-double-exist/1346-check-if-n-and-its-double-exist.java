@@ -1,11 +1,11 @@
 class Solution {
     public boolean checkIfExist(int[] arr) {
-        HashSet<Float>hs=new HashSet<>();
+        HashSet<Integer>hs=new HashSet<>();
         
         for(int p:arr) {
-            if(hs.contains(p/2.0f)  || hs.contains(p*2.0f))
+            if((hs.contains(p/2) && p%2==0)  || hs.contains(p*2))
                 return true;
-            hs.add((float)p);
+            hs.add(p);
         }
         
         return false;
